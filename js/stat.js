@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 'use strict';
 
 const CLOUD_WIDTH = 420;
@@ -6,8 +5,10 @@ const CLOUD_HEIGHT = 270;
 const CLOUD_X = 100;
 const CLOUD_Y = 10;
 const GAP = 10;
-const TITLE_GAP = 20;
 const FONT_GAP = 33;
+const TITLE_GAP = 20;
+const TITLE_POSITION_X = CLOUD_X + TITLE_GAP;
+const TITLE_POSITION_Y = CLOUD_Y + FONT_GAP;
 const NAME_HEIGHT = 15;
 const GISTOGRAM_HEIGHT = 85;
 const TIME_HEIGHT = 40;
@@ -46,18 +47,19 @@ window.renderStatistics = function (ctx, players, times) {
 
   ctx.font = `16px PT Mono`;
   ctx.fillStyle = `#000`;
-  ctx.fillText(`Ура вы победили!`, CLOUD_X + TITLE_GAP, CLOUD_Y + FONT_GAP);
-  ctx.fillText(`Список результатов:`, CLOUD_X + TITLE_GAP, CLOUD_Y + FONT_GAP + TITLE_GAP);
+  ctx.fillText(`Ура вы победили!`, TITLE_POSITION_X, TITLE_POSITION_Y);
+  ctx.fillText(`Список результатов:`, TITLE_POSITION_X, TITLE_POSITION_Y + TITLE_GAP);
 
-  let maxTime = getMaxElement(times);
+  const maxTime = getMaxElement(times);
 
   for (let i = 0; i < players.length; i++) {
-    let barPositionX = CLOUD_X + GISTOGRAM_LEFT + BARS_DISTANCE * i;
+    const barPositionX = CLOUD_X + GISTOGRAM_LEFT + BARS_DISTANCE * i;
+    const barHeight = BAR_HEIGHT_MAX * times[i] / maxTime;
 
     ctx.fillStyle = `#000`;
     ctx.fillText(players[i], barPositionX, CLOUD_Y + CLOUD_HEIGHT - NAME_HEIGHT);
-    ctx.fillText(Math.round(times[i]), barPositionX, CLOUD_Y + CLOUD_HEIGHT - BAR_HEIGHT_MAX * times[i] / maxTime - TIME_HEIGHT);
+    ctx.fillText(Math.round(times[i]), barPositionX, CLOUD_Y + CLOUD_HEIGHT - barHeight - TIME_HEIGHT);
     ctx.fillStyle = getBarColor(players[i]);
-    ctx.fillRect(barPositionX, CLOUD_Y + GISTOGRAM_HEIGHT + BAR_HEIGHT_MAX * (1 - times[i] / maxTime), BAR_WIDTH, BAR_HEIGHT_MAX * times[i] / maxTime);
+    ctx.fillRect(barPositionX, CLOUD_Y + GISTOGRAM_HEIGHT + BAR_HEIGHT_MAX * (1 - times[i] / maxTime), BAR_WIDTH, barHeight);
   }
 };

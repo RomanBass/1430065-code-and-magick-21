@@ -51,6 +51,9 @@ let setupUserName = setup.querySelector(`.setup-user-name`);
 let wizardCoat = setup.querySelector(`.wizard-coat`);
 let wizardEyes = setup.querySelector(`.wizard-eyes`);
 let wizardFireball = setup.querySelector(`.setup-fireball`);
+let coatInput = setup.querySelector(`.setup-wizard-appearance input:nth-child(2)`);
+let eyesInput = setup.querySelector(`.setup-wizard-appearance input:nth-child(3)`);
+let fireballInput = setup.querySelector(`.setup-fireball-wrap input`);
 
 const onPopupEscPress = function (evt) {
   if (evt.key === `Escape` && setupUserName !== document.activeElement) {
@@ -89,11 +92,12 @@ setupClose.addEventListener(`keydown`, function (evt) {
   }
 });
 
-const chooseElementColor = function (element, colorsArray) {
+const chooseElementColor = function (element, colorsArray, elementInput) {
   let i = 1;
   element.addEventListener(`click`, function () {
     element.style.fill = colorsArray[i];
     element.style.backgroundColor = colorsArray[i];
+    elementInput.value = colorsArray[i];
     i++;
     if (i >= colorsArray.length) {
       i = 0;
@@ -101,6 +105,8 @@ const chooseElementColor = function (element, colorsArray) {
   });
 };
 
-chooseElementColor(wizardCoat, WIZARD_COATS_COLOR);
-chooseElementColor(wizardEyes, WIZARD_EYES_COLOR);
-chooseElementColor(wizardFireball, WIZARD_FIREBALL_COLOR);
+chooseElementColor(wizardCoat, WIZARD_COATS_COLOR, coatInput);
+chooseElementColor(wizardEyes, WIZARD_EYES_COLOR, eyesInput);
+chooseElementColor(wizardFireball, WIZARD_FIREBALL_COLOR, fireballInput);
+
+

@@ -43,7 +43,7 @@ for (let i = 0; i < wizards.length; i++) {
   insertElement(similarListElement, wizards[i]);
 }
 
-// 12-10-2020 /////////////////////////////////////////////
+// 13-10-2020 /////////////////////////////////////////////
 
 let setupOpen = document.querySelector(`.setup-open`);
 let setupClose = setup.querySelector(`.setup-close`);

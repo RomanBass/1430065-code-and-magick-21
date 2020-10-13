@@ -72,9 +72,7 @@ const closePopup = function () {
   document.removeEventListener(`keydown`, onPopupEscPress);
 };
 
-setupOpen.addEventListener(`click`, function () {
-  openPopup();
-});
+setupOpen.addEventListener(`click`, openPopup);
 
 setupOpen.addEventListener(`keydown`, function (evt) {
   if (evt.key === `Enter`) {
@@ -82,9 +80,7 @@ setupOpen.addEventListener(`keydown`, function (evt) {
   }
 });
 
-setupClose.addEventListener(`click`, function () {
-  closePopup();
-});
+setupClose.addEventListener(`click`, closePopup);
 
 setupClose.addEventListener(`keydown`, function (evt) {
   if (evt.key === `Enter`) {
@@ -108,5 +104,3 @@ const chooseElementColor = function (element, colorsArray, elementInput) {
 chooseElementColor(wizardCoat, WIZARD_COATS_COLOR, coatInput);
 chooseElementColor(wizardEyes, WIZARD_EYES_COLOR, eyesInput);
 chooseElementColor(wizardFireball, WIZARD_FIREBALL_COLOR, fireballInput);
-
-

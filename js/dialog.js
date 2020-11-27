@@ -41,9 +41,18 @@
     window.util.isEnterEvent(evt, closePopup);
   });
 
+  window.coatColor = `rgb(101, 137, 164)`;
+  window.eyesColor = `black`;
+
   const chooseElementColor = function (element, colorsArray, elementInput) {
     let i = 1;
+
     element.addEventListener(`click`, function () {
+      if (element === wizardCoat) {
+        window.coatColor = colorsArray[i];
+      } else if (element === wizardEyes) {
+        window.eyesColor = colorsArray[i];
+      }
       element.style.fill = colorsArray[i];
       element.style.backgroundColor = colorsArray[i];
       elementInput.value = colorsArray[i];
@@ -57,4 +66,13 @@
   chooseElementColor(wizardCoat, WIZARD_COATS_COLOR, coatInput);
   chooseElementColor(wizardEyes, WIZARD_EYES_COLOR, eyesInput);
   chooseElementColor(wizardFireball, WIZARD_FIREBALL_COLOR, fireballInput);
+
+  wizardCoat.addEventListener(`click`, function () {
+    window.filteredWizards();
+  });
+
+  wizardEyes.addEventListener(`click`, function () {
+    window.filteredWizards();
+  });
+
 })();

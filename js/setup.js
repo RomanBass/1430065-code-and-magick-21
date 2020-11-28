@@ -2,10 +2,11 @@
 
 window.setup = document.querySelector(`.setup`);
 const form = window.setup.querySelector(`.setup-wizard-form`);
+window.wizards = [];
 
 (function () {
   const WIZARDS_NUMBER = 5;
-  let similarListElement = document.querySelector(`.setup-similar-list`);
+  window.similarListElement = document.querySelector(`.setup-similar-list`);
   let similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 
   const createElement = function (template, wizard) {
@@ -24,41 +25,13 @@ const form = window.setup.querySelector(`.setup-wizard-form`);
 
   window.render = function (array) {
     for (let i = 0; i < WIZARDS_NUMBER; i++) {
-      insertElement(similarListElement, array[i]);
+      insertElement(window.similarListElement, array[i]);
     }
   };
 
-  window.filteredWizards = function () {
-    const sameCoatAndEyesWizards = wizards.filter(function (wizard) {
-      return wizard.colorCoat === window.coatColor &&
-      wizard.colorEyes === window.eyesColor;
-    });
-
-    const sameCoatWizards = wizards.filter(function (wizard) {
-      return wizard.colorCoat === window.coatColor;
-    });
-
-    const sameEyesWizards = wizards.filter(function (wizard) {
-      return wizard.colorEyes === window.eyesColor;
-    });
-
-    let expandedWizards = sameCoatAndEyesWizards;
-    expandedWizards = expandedWizards.concat(sameCoatWizards);
-    expandedWizards = expandedWizards.concat(sameEyesWizards);
-    expandedWizards = expandedWizards.concat(wizards);
-
-    const uniqueWizards = expandedWizards.filter(function (wizard, index) {
-      return expandedWizards.indexOf(wizard) === index;
-    });
-
-    similarListElement.innerHTML = ``;
-    window.render(uniqueWizards);
-  };
-
-  let wizards = [];
   window.backend.load(function (data) {
-    wizards = data;
-    window.render(wizards);
+    window.wizards = data;
+    window.render(window.wizards);
 
   }, function (message) {
     window.util.showErrorMessage(message);

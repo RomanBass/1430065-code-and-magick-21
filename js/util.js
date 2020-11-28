@@ -31,4 +31,5 @@
       document.body.insertAdjacentElement(`afterbegin`, node);
     }
   };
+
 })();

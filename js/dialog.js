@@ -67,12 +67,12 @@
   chooseElementColor(wizardEyes, WIZARD_EYES_COLOR, eyesInput);
   chooseElementColor(wizardFireball, WIZARD_FIREBALL_COLOR, fireballInput);
 
-  wizardCoat.addEventListener(`click`, function () {
+  wizardCoat.addEventListener(`click`, window.debounce(function () {
     window.filteredWizards();
-  });
+  }));
 
-  wizardEyes.addEventListener(`click`, function () {
+  wizardEyes.addEventListener(`click`, window.debounce(function () {
     window.filteredWizards();
-  });
+  }));
 
 })();

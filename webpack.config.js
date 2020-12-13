@@ -8,6 +8,7 @@
     "./js/filter.js",
     "./js/debounce.js",
     "./js/dialog.js",
+    "./js/avatar.js",
     "./js/move.js",
     "./js/stat.js",
     "./js/game.js"
